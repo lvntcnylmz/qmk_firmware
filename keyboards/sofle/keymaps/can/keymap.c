@@ -1,26 +1,5 @@
 #include QMK_KEYBOARD_H
 #include "keymap_turkish_q.h"
-#include "sendstring_turkish_q.h"
-
-enum unicode_names {
-    UC_CCEDIL,  // ç
-    UC_SCEDIL,  // ş
-    UC_GBREVE,  // ğ
-    UC_ODOT,    // ö
-    UC_UDOT,    // ü
-    UC_IDOT,    // ı
-    UC_IUML     // İ
-};
-
-const uint32_t unicode_map[] PROGMEM = {
-    [UC_CCEDIL] = 0x00E7, // ç
-    [UC_SCEDIL] = 0x015F, // ş
-    [UC_GBREVE] = 0x011F, // ğ
-    [UC_ODOT]   = 0x00F6, // ö
-    [UC_UDOT]   = 0x00FC, // ü
-    [UC_IDOT]   = 0x0131, // ı
-    [UC_IUML]   = 0x0130  // İ
-};
 
 enum sofle_layers {
     _QWERTY,
@@ -80,7 +59,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 [_LOWER] = LAYOUT(
   _______, KC_F1,   KC_F2,   KC_F3,   KC_F4,   KC_F5,                       KC_F6,   KC_F7,   KC_F8,   KC_F9,  KC_F10,  _______,
   _______, KC_F11 , KC_F12 , _______ , _______ , _______,                   _______, _______ , _______ , _______ , _______ , _______,
-  _______, UC_SCEDIL , _______ , _______ , _______ , _______,                 _______, KC_MINS , KC_EQL , _______ , _______ , _______,
+  _______, _______ , _______ , _______ , _______ , _______,                 _______, KC_MINS , KC_EQL , _______ , _______ , _______,
   _______, _______ , _______ , _______ , _______ , QK_BOOT, _______,       _______, QK_BOOT , _______ , _______ , _______ , KC_PIPE , _______,
                        _______, _______, _______, _______, _______,       _______, _______, _______, _______, _______
 ),
@@ -120,7 +99,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
  *            `-----------------------------------'           '------''---------------------------'
  */
   [_ADJUST] = LAYOUT(
-  _______, XXXXXXX   XXXXXXX ,  XXXXXXX , XXXXXXX, XXXXXXX,                     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
+  XXXXXXX , XXXXXXX,  XXXXXXX ,  XXXXXXX , XXXXXXX, XXXXXXX,                     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   QK_BOOT  , XXXXXXX,KC_QWERTY,_______  ,CG_TOGG,XXXXXXX,                     XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX, XXXXXXX,
   XXXXXXX , XXXXXXX,CG_TOGG, XXXXXXX,    XXXXXXX,  XXXXXXX,                     XXXXXXX, KC_VOLD, KC_MUTE, KC_VOLU, XXXXXXX, XXXXXXX,
   XXXXXXX , XXXXXXX, XXXXXXX, XXXXXXX,    XXXXXXX,  XXXXXXX, XXXXXXX,     XXXXXXX, CG_NORM, KC_MPRV, KC_MPLY, KC_MNXT, XXXXXXX, XXXXXXX,
@@ -345,14 +324,14 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
             } else {
                 tap_code(KC_BRID);
             }
-        }
+        } 
         else {
             if (clockwise) {
                 tap_code(KC_VOLU);
             } else {
                 tap_code(KC_VOLD);
             }
-        }
+        } 
     } else if (index == 1) {
         if (clockwise) {
             tap_code(KC_PGDN);
